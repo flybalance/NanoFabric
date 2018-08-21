@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Models;
+using Microsoft.Extensions.Options;
 using NanoFabric.IdentityServer.Interfaces.Repositories;
 using StackExchange.Redis;
 using System;
@@ -14,9 +15,9 @@ namespace NanoFabric.IdentityServer.Repositories.PersistedGrantAggregate
         private const int _dbNumber = 2;
         private readonly ConnectionMultiplexer _redis;
 
-        public PersistedGrantStore(IdentityOptions options)
+        public PersistedGrantStore(IOptions<IdentityOptions> iOptIdentityOptions)
         {
-            _redis = ConnectionMultiplexer.Connect(options.Redis);
+            _redis = ConnectionMultiplexer.Connect(iOptIdentityOptions.Value.Redis);
         }
 
         public void Dispose()

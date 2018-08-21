@@ -37,6 +37,9 @@ namespace SampleService.IdentityServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+            services.Configure<IdentityOptions>(Configuration.GetSection("Logging:IdentityOptions"));
+
             var cert = new X509Certificate2(Path.Combine(_environment.ContentRootPath, "nanofabrictest.pfx"), "idsrv3test");
 
             services.AddSingleton<IConfiguration>(Configuration);

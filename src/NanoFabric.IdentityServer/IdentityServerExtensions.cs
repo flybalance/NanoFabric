@@ -17,7 +17,6 @@ namespace NanoFabric.IdentityServer
     {
         public static IIdentityServerBuilder AddNanoFabricIDS(this IIdentityServerBuilder builder, IConfigurationRoot config)
         {
-            builder.Services.ConfigurePOCO(config.GetSection("IdentityOptions"), () => new IdentityOptions());
             builder.Services.AddTransient<IUserRepository, UserInMemoryRepository>();
             builder.Services.AddTransient<IResourceRepository, ResourceInMemoryRepository>();
             builder.Services.AddTransient<IClientRepository, ClientInMemoryRepository>();
